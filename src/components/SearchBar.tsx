@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input"
 
 interface SearchBarProps {
   onSearch: (city: string) => void
+  isLoading?: boolean
 }
 
-export function SearchBar({ onSearch }: SearchBarProps) {
+export function SearchBar({ onSearch, isLoading = false }: SearchBarProps) {
   const [value, setValue] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -41,13 +42,16 @@ export function SearchBar({ onSearch }: SearchBarProps) {
         autoComplete="off"
         autoCorrect="off"
         spellCheck={false}
+        disabled={isLoading}
         className="flex-1 bg-card border-border placeholder:text-muted-foreground/60 focus-visible:ring-ring"
         style={{ fontFamily: "var(--font-sans)" }}
       />
       <Button
         type="submit"
-        className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring"
+        disabled={isLoading}
+        className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring disabled:opacity-60"
         aria-label="Search weather for entered city"
+        aria-disabled={isLoading}
         style={{ fontFamily: "var(--font-sans)" }}
       >
         <Search aria-hidden="true" focusable={false} className="w-4 h-4 mr-2" />
