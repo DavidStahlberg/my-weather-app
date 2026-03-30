@@ -77,6 +77,48 @@
   --radius: 0.5rem;
 }
 
+/* ── Dark mode — "evening journal" palette ─────────────────────────────── */
+.dark {
+  /* Deep warm brown-black — like weathered leather */
+  --background: oklch(0.165 0.022 50);
+
+  /* Warm cream — high contrast on dark bg (>7:1, AAA) */
+  --foreground: oklch(0.930 0.018 88);
+
+  /* Card: slightly lifted dark surface */
+  --card: oklch(0.205 0.022 52);
+  --card-foreground: oklch(0.930 0.018 88);
+
+  --popover: oklch(0.205 0.022 52);
+  --popover-foreground: oklch(0.930 0.018 88);
+
+  /* Primary: amber — slightly brighter to pop on dark */
+  --primary: oklch(0.76 0.158 70);
+  --primary-foreground: oklch(0.12 0.030 50);
+
+  /* Secondary: dark warm surface */
+  --secondary: oklch(0.265 0.022 55);
+  --secondary-foreground: oklch(0.85 0.018 80);
+
+  /* Muted */
+  --muted: oklch(0.245 0.018 55);
+  --muted-foreground: oklch(0.60 0.030 68);
+
+  /* Accent: amber-tinted dark */
+  --accent: oklch(0.285 0.040 62);
+  --accent-foreground: oklch(0.920 0.018 86);
+
+  /* Destructive: brighter terracotta for dark backgrounds */
+  --destructive: oklch(0.62 0.175 25);
+
+  /* Border/input: subtle warm dividers */
+  --border: oklch(0.285 0.020 55);
+  --input: oklch(0.285 0.020 55);
+
+  /* Ring: same as primary */
+  --ring: oklch(0.76 0.158 70);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -87,6 +129,17 @@
     /* Subtle paper noise texture */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     background-repeat: repeat;
+  }
+}
+
+/* Smooth theme transitions — skipped for users who prefer reduced motion */
+@media not (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
   }
 }
 
