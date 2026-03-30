@@ -46,6 +46,15 @@ interface OWMForecastResponse {
   list: OWMForecastItem[]
 }
 
+export async function reverseGeocode(lat: number, lon: number): Promise<string> {
+  const url =
+    `https://api.openweathermap.org/geo/1.0/reverse` +
+    `?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`
+  const results = await fetchJson<Array<{ name: string }>>( url)
+  if (!results.length) throw new Error("Couldn't determine a city from your location.")
+  return results[0].name
+}
+
 async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url)
   if (!res.ok) {
